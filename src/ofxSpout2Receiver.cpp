@@ -14,6 +14,15 @@ void Receiver::setup() {
 	SenderName[0] = 0;
 }
 
+void Receiver::setup(string channelName) {
+	char mutableName[256];
+	strcpy_s(mutableName, channelName.size() + 1, channelName.c_str());
+	mReceiver = new SpoutReceiver;
+	mReceiver->SetActiveSender(mutableName);
+	mbInitialized = false;
+	SenderName[0] = 0;
+}
+
 void Receiver::showSenders() {
 	mReceiver->SelectSenderPanel();
 }
